@@ -1,9 +1,12 @@
 import React from 'react';
 
+import classes from './App.module.css';
+import InvoicePanel from './containers/InvoicePanel/InvoicePanel';
+
 function App() {
   return (
-    <div className="">
-      content...
+    <div className={classes.App}>
+      <InvoicePanel />
     </div>
   );
 }

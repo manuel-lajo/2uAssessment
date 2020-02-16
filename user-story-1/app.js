@@ -1,20 +1,19 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const app = express();
 
-const mongoose = require('mongoose');
+app.use(bodyParser.json());
 
-// const mongoConnect = require('./util/database');
+const invoiceRoutes = require('./routes/invoice');
 
+app.use('/invoice', invoiceRoutes);
 
-// mongoConnect(client => {
-//   console.log(client);
-//   app.listen(3000);
-// });
-
-mongoose.connect(
-  'mongodb+srv://new-user_27:cG2Q3dPnpEp9Pgtr@cluster0-lnlel.mongodb.net/test?retryWrites=true&w=majority'
-)
+mongoose
+  .connect(
+  'mongodb+srv://new-user_27:cG2Q3dPnpEp9Pgtr@cluster0-lnlel.mongodb.net/invoice?retryWrites=true&w=majority'
+  )
   .then(result => {
     app.listen(3000);
   })

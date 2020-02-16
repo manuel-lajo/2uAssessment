@@ -11,3 +11,13 @@ exports.createInvoice = (req, res) => {
       console.log(err);
     });
 };
+
+exports.getPendingInvoices = (req, res) => {
+  Invoice.find({ status: 'pending' })
+    .then(invoices => {
+      res.json(invoices)
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};

@@ -5,3 +5,15 @@
   margin: 5px;
   box-sizing: border-box;
 }
+
+.Button {
+  background-color: lightgray;
+  border: none;
+  color: black;
+  outline: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 5px 10px;
+  margin: 5px 10px 0;
+  font-weight: bold;
+}

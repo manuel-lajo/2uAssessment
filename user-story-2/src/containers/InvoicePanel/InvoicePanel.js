@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 
+import classes from './InvoicePanel.module.css';
 import Invoice from '../../components/Invoice/Invoice';
+import Modal from '../../components/Modal/Modal';
 import axios from 'axios';
 
 class InvoicePanel extends Component {
   state = {
     invoices: [],
-    loading: true
+    selectedInvoiceId: null,
+    loading: true,
+    approving: false
   };
 
   componentDidMount() {
@@ -20,14 +24,48 @@ class InvoicePanel extends Component {
     });
   }
 
+  approveHandler = id => {
+    this.setState({ approving: true, selectedInvoiceId: id });
+  }
+
+  approveCancelHandler = () => {
+    this.setState({ approving: false, selectedInvoiceId: null });
+  }
+
+  approveConfirmHandler = () => {
+    axios
+    .put(`http://localhost:7000/invoice/approve/${this.state.selectedInvoiceId}`)
+    .then(response => {
+      let invoices = [...this.state.invoices];
+      invoices = invoices.map(el => ({ ...el }));
+      invoices = invoices.filter(el => el._id !== this.state.selectedInvoiceId);
+      this.setState({
+        invoices,
+        approving: false,
+        selectedInvoiceId: null,
+        loading: false
+      });
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+
   render() {
     let invoices = <div>loading...</div>;
     if (!this.state.loading) {
       invoices = this.state.invoices.map(invoice => (
-        <Invoice key={invoice._id} invoice={invoice} />
+        <Invoice key={invoice._id} invoice={invoice} clicked={() => this.approveHandler(invoice._id)} />
       ));
     }
-    return <div>{invoices}</div>;
+    return <div>
+      <Modal show={this.state.approving} modalClosed={this.approveCancelHandler}>
+        <p>Approve Invoice?</p>
+        <button className={classes.Button} onClick={this.approveCancelHandler}>Cancel</button>
+        <button className={classes.Button} onClick={this.approveConfirmHandler}>Confirm</button>
+      </Modal>
+      {invoices}
+      </div>;
   }
 }
 

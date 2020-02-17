@@ -11,6 +11,7 @@ const invoice = props => {
       <div><b>Invoice Total:</b> {props.invoice.total}</div>
       <div><b>Invoice Date:</b> {props.invoice.invoice_date}</div>
       <div><b>Due Date:</b> {props.invoice.due_date}</div>
+      <button className={classes.Button} onClick={props.clicked}>Approve</button>
     </div>    
   );
 };

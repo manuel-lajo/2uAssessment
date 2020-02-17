@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const io = require('./socket');
 
 const app = express();
 
@@ -22,8 +23,10 @@ mongoose
   'mongodb+srv://new-user_27:cG2Q3dPnpEp9Pgtr@cluster0-lnlel.mongodb.net/invoice?retryWrites=true&w=majority'
   )
   .then(result => {
-    app.listen(7000);
+    const server = app.listen(7000);
+    io.init(server);
   })
   .catch(err => {
     console.log(err);
   });
+  

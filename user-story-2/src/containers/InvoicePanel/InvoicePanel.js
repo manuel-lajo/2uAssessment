@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import openSocket from 'socket.io-client';
 
 import classes from './InvoicePanel.module.css';
 import Invoice from '../../components/Invoice/Invoice';
@@ -22,7 +23,22 @@ class InvoicePanel extends Component {
     .catch(error => {
       console.log(error);
     });
+    const socket = openSocket('http://localhost:7000');
+    socket.on('invoices', data => {
+      if (data.action === 'create') {
+        this.addInvoice(data.invoice);
+      }
+    });
   }
+
+  addInvoice = invoice => {
+    this.setState(prevState => {
+      let invoices = [...prevState.invoices];
+      invoices = invoices.map(el => ({ ...el }));
+      invoices.unshift(invoice);
+      return { invoices };
+    });
+  };
 
   approveHandler = id => {
     this.setState({ approving: true, selectedInvoiceId: id });

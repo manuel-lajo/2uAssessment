@@ -20,5 +20,3 @@
 - The web app is now live and can be accessed on:
 
 ### `http://localhost:3000/`
-
-- Data Store chosen was mongoDB Atlas

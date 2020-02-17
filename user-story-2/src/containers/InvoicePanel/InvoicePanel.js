@@ -6,6 +6,10 @@ import Invoice from '../../components/Invoice/Invoice';
 import Modal from '../../components/Modal/Modal';
 import axios from 'axios';
 
+// TODO: use a Spinner component to display while waiting for async requests to server
+// TODO: handle response success & errors, maybe with a success / fail banner component
+// TODO: use additional CSS to give better user experience
+// TODO: use environment constants to store server api's url
 class InvoicePanel extends Component {
   state = {
     invoices: [],

@@ -14,6 +14,9 @@ app.use((req, res, next) => {
   next();
 })
 
+// TODO: handle errors, currently all errors are being console logged only
+// TODO: handle authorization throught jwt or another authorization method
+// TODO: use environment constants to store db url and others things like port
 const invoiceRoutes = require('./routes/invoice');
 
 app.use('/invoice', invoiceRoutes);
@@ -29,4 +32,3 @@ mongoose
   .catch(err => {
     console.log(err);
   });
-  

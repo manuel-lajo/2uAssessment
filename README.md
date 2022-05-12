@@ -1,9 +1,7 @@
 # 2uAssessment
 The business analyst assigned to your sprint team has presented you with two user stories to complete this sprint. This assessment asks you to complete these story cards to the best of your ability. 
 
-The assessment is more about creating a working solution that meets as many of the acceptance criteria as possible than it is about getting every detail perfect. It is not necessary to complete every acceptance criteria to submit the assessment. Complete what you can and leave "TODO:" comments with appropriate placeholder instructions anywhere you are unable to complete your code. You must turn the assignment by the end of the third day after you are given the assignment.
-
-Fork this repo and push the code to your new forked repo. Submit the forked repo's URL to greg@2ulaundry.com
+The assessment is more about creating a working solution that meets as many of the acceptance criteria as possible than it is about getting every detail perfect.
 
 ## User story 1
 As a vendor supplying services to 2ULaundry I need to submit invoices via an API in order to receive payment in a timely manner.
